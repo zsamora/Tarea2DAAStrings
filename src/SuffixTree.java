@@ -1,13 +1,11 @@
 public class SuffixTree {
-    String text;
     Node root;
 
     public SuffixTree() {
         root = new Leaf(-1);
     }
 
-    public SuffixTree(String newText) {
-        text = newText;
+    public SuffixTree(String text) {
         // Crear indices como un arbol de sufijos
         root = indexText(text);
     }
@@ -22,6 +20,7 @@ public class SuffixTree {
         return newroot;
     }
     public void printTree(){
-        root.printEdges();
+        System.out.println("root:");
+        root.printEdges(true);
     }
 }
