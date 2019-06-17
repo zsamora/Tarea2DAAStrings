@@ -2,24 +2,18 @@ public class SuffixTree {
     Node root;
 
     public SuffixTree() {
-        root = new Leaf(-1);
+        root = new InnerNode();
     }
 
-    public SuffixTree(String text) {
-        // Crear indices como un arbol de sufijos
-        root = indexText(text);
-    }
-
-    public Node indexText(String text) {
-        InnerNode newroot = new InnerNode();
+    public void indexWord(String word, long position) {
         // Iterar sobre cada sufijo desde el ultimo al primero
-        for (int i = text.length()-1; i >= 0; i--) {
-            String subtext = text.substring(i);
-            newroot.addSuffix(i, subtext);
+        for (int i = word.length()-1; i >= 0; i--) {
+            String subtext = word.substring(i);
+            root.addSuffix(i+position, subtext);
         }
-        return newroot;
     }
-    public void printTree(){
+
+    public void printTree() {
         System.out.println("root:");
         root.printEdges(true);
     }

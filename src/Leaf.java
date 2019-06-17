@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 
 public class Leaf implements Node{
-    ArrayList<Integer> index;
+    ArrayList<Long> index;
 
-    public Leaf(int newindex) {
-        index = new ArrayList<Integer>();
+    public Leaf(long newindex) {
+        index = new ArrayList<Long>();
         index.add(newindex);
     }
 
     @Override
-    public void addSuffix(int index, String subtext) {}
+    public void addSuffix(long index, String subtext) {}
     @Override
-    public void addSuffixRec(int index, String subtext, String rest) {}
+    public void addSuffixRec(long index, String subtext, String rest) {}
     @Override
     public void printEdges(boolean breakline) {
         System.out.print(String.valueOf(index));
@@ -21,7 +21,7 @@ public class Leaf implements Node{
         return index;
     }
     @Override
-    public void addValue(int newindex) {
+    public void addValue(long newindex) {
         index.add(newindex);
     }
 }

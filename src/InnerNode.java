@@ -7,13 +7,12 @@ public class InnerNode implements Node {
     HashMap<String, Node> children = new HashMap<String, Node>();
 
     @Override
-    public void addSuffix(int index, String subtext) {
-        if (!subtext.equals("")) {
+    public void addSuffix(long index, String subtext) {
+        if (!subtext.equals(""))
             addSuffixRec(index, subtext, "");
-        }
     }
     @Override
-    public void addSuffixRec(int index, String subtext, String rest) {
+    public void addSuffixRec(long index, String subtext, String rest) {
         int tsize = subtext.length(); // Largo del subtexto
         // Si el sufijo exacto existe en el diccionario
         if (children.containsKey(subtext)) {
@@ -62,7 +61,7 @@ public class InnerNode implements Node {
         return new ArrayList<Integer>(-1);
     }
     @Override
-    public void addValue(int newindex) {
+    public void addValue(long newindex) {
 
     }
     @Override
@@ -70,7 +69,7 @@ public class InnerNode implements Node {
         for (String s : children.keySet()) {
             Node n = children.get(s);
             if (breakline) {
-                System.out.print(s + " => {");
+                System.out.print("  °===> " + s + " => {");
                 n.printEdges(false);
                 System.out.println("}");
             }

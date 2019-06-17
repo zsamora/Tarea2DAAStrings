@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public interface Node {
-    void addSuffix(int index, String subtext);
-    void addSuffixRec(int index, String subtext, String rest);
+    void addSuffix(long index, String subtext);
+    void addSuffixRec(long index, String subtext, String rest);
     ArrayList<Integer> getValues();
-    void addValue(int newindex);
+    void addValue(long newindex);
     void printEdges(boolean breakline);
 }
