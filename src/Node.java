@@ -7,5 +7,6 @@ public interface Node {
     int getNValues();
     void addValue(long newindex);
     void printEdges(boolean breakline);
-    int countRec(InnerNode node, String pattern);
+    //int countRec(String pattern);
+    ArrayList<Long> locate(String pattern);
 }

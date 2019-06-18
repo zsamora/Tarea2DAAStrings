@@ -17,9 +17,7 @@ public class Leaf implements Node{
         System.out.print(String.valueOf(index));
     }
     @Override
-    public ArrayList<Long> getValues() {
-        return index;
-    }
+    public ArrayList<Long> getValues() { return index; }
     @Override
     public int getNValues() {
         return index.size();
@@ -28,6 +26,8 @@ public class Leaf implements Node{
     public void addValue(long newindex) {
         index.add(newindex);
     }
+    /*@Override
+    public int countRec(String pattern) { return 0;}*/
     @Override
-    public int countRec(InnerNode node, String pattern) { return 0;}
+    public ArrayList<Long> locate(String pattern) { return getValues(); }
 }

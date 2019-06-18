@@ -56,36 +56,69 @@ public class InnerNode implements Node {
             }
         }
     }
-    @Override
-    public int countRec(InnerNode node, String pattern) {
+    /*@Override
+    public int countRec(String pattern) {
         for (int i = 1; i <= pattern.length(); i++ ) {
             String subpattern = pattern.substring(0,i);
             String restpattern = "";
             if (i < pattern.length())
                 restpattern = pattern.substring(i);
-            for (String ckey : node.children.keySet()) {
+            for (String ckey : children.keySet()) {
                 // Si el subpatron se encuentra exactamente en alguna arista
                 if (ckey.equals(subpattern)) {
-                    Node n = node.children.get(ckey);
+                    Node n = children.get(ckey);
                     // Si el patron calzo completo, retornar la cantidad de indices
                     if (restpattern.equals("")) {
                         return n.getNValues();
                     }
                     else {
-                        return countRec((InnerNode) n, restpattern);
+                        return n.countRec(restpattern);
                     }
                 }
             }
         }
         return 0;
-    }
+    }*/
     @Override
-    public ArrayList<Long> getValues() {
+    public ArrayList<Long> locate(String pattern) {
+        for (int i = 1; i <= pattern.length(); i++ ) {
+            String subpattern = pattern.substring(0,i);
+            String restpattern = "";
+            if (i < pattern.length())
+                restpattern = pattern.substring(i);
+            for (String ckey : children.keySet()) {
+                // Si el subpatron se encuentra exactamente en alguna arista
+                if (ckey.equals(subpattern)) {
+                    Node n = children.get(ckey);
+                    // Si el patron calzo completo, retornar la cantidad de indices
+                    if (restpattern.equals("")) {
+                        return n.getValues();
+                    }
+                    else {
+                        return n.locate(restpattern);
+                    }
+                }
+            }
+        }
         return null;
     }
     @Override
+    public ArrayList<Long> getValues() {
+        ArrayList<Long> result = new ArrayList<>();
+        for (String ckey : children.keySet()) {
+            Node n = children.get(ckey);
+            result.addAll(n.getValues());
+        }
+        return result;
+    }
+    @Override
     public int getNValues() {
-        return children.size();
+        int result = 0;
+        for (String s : children.keySet()) {
+            Node n = children.get(s);
+            result += n.getNValues();
+        }
+        return result;
     }
     @Override
     public void addValue(long newindex) {}
