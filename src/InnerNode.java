@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class InnerNode implements Node {
     // Diccionario de aristas que referencian a un Nodo (interno o hoja)
-    HashMap<String, Node> children = new HashMap<String, Node>();
+    HashMap<String, Node> children = new HashMap<>();
 
     @Override
     public void addSuffix(long index, String subtext) {
@@ -57,13 +57,38 @@ public class InnerNode implements Node {
         }
     }
     @Override
-    public ArrayList<Integer> getValues() {
-        return new ArrayList<Integer>(-1);
+    public int countRec(InnerNode node, String pattern) {
+        for (int i = 1; i <= pattern.length(); i++ ) {
+            String subpattern = pattern.substring(0,i);
+            String restpattern = "";
+            if (i < pattern.length())
+                restpattern = pattern.substring(i);
+            for (String ckey : node.children.keySet()) {
+                // Si el subpatron se encuentra exactamente en alguna arista
+                if (ckey.equals(subpattern)) {
+                    Node n = node.children.get(ckey);
+                    // Si el patron calzo completo, retornar la cantidad de indices
+                    if (restpattern.equals("")) {
+                        return n.getNValues();
+                    }
+                    else {
+                        return countRec((InnerNode) n, restpattern);
+                    }
+                }
+            }
+        }
+        return 0;
     }
     @Override
-    public void addValue(long newindex) {
-
+    public ArrayList<Long> getValues() {
+        return null;
     }
+    @Override
+    public int getNValues() {
+        return children.size();
+    }
+    @Override
+    public void addValue(long newindex) {}
     @Override
     public void printEdges(boolean breakline){
         for (String s : children.keySet()) {

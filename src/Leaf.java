@@ -4,7 +4,7 @@ public class Leaf implements Node{
     ArrayList<Long> index;
 
     public Leaf(long newindex) {
-        index = new ArrayList<Long>();
+        index = new ArrayList<>();
         index.add(newindex);
     }
 
@@ -17,11 +17,17 @@ public class Leaf implements Node{
         System.out.print(String.valueOf(index));
     }
     @Override
-    public ArrayList getValues() {
+    public ArrayList<Long> getValues() {
         return index;
+    }
+    @Override
+    public int getNValues() {
+        return index.size();
     }
     @Override
     public void addValue(long newindex) {
         index.add(newindex);
     }
+    @Override
+    public int countRec(InnerNode node, String pattern) { return 0;}
 }
