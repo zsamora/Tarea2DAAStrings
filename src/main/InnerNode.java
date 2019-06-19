@@ -1,4 +1,7 @@
+package main;
+
 import java.util.HashMap;
+
 public class InnerNode implements Node {
     // Aristas que referencian a un Nodo (interno o hoja)
     HashMap<String, Node> edges = new HashMap<String, Node>();
@@ -10,9 +13,9 @@ public class InnerNode implements Node {
             if (tsize == 1) {
                 edges.put(subtext, new Leaf(index));
                 edges.remove("subtext");
-                New Innernode ()
+//                new Innernode ();
             }
-            addSuffix(index,);
+//            addSuffix(index,);
         }
     }
     public void printEdges(){

@@ -1,3 +1,5 @@
+package main;
+
 public class SuffixTree {
     String text;
     Node root;

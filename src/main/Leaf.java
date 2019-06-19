@@ -1,4 +1,7 @@
-import java.util.ArrayList
+package main;
+
+import java.util.ArrayList;
+
 public class Leaf implements Node{
     ArrayList<Integer> index;
 
@@ -15,6 +18,12 @@ public class Leaf implements Node{
     public void printEdges() {
 
     }
+
+    @Override
+    public int getValue() {
+        return 0;
+    }
+
     public ArrayList getValues() {
         return index;
     }
