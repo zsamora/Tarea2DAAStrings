@@ -20,25 +20,24 @@ public class InnerNode implements Node {
             Node childmatch = children.get(subtext);
             // Si el resto es vacio
             if (rest.equals(""))
-                childmatch.addValue(index); // Obtiene el nodo y agrega el nuevo indice
+                childmatch.addValue(index); // Agrega el nuevo indice
             else
                 childmatch.addSuffix(index, rest);
-            System.out.println(children.get(subtext).getValues());
+            //System.out.println(children.get(subtext).getValues());
         }
         // Si no existe
         else {
             boolean found = false;
             // Si alguna arista contiene el sufijo en su texto
             for (String ckey : children.keySet()) {
-                boolean empieza = ckey.startsWith(subtext);
                 if (ckey.startsWith(subtext)) {
                     found = true;
                     Node oldnode = children.get(ckey);
                     children.remove(ckey);
-                    String restedge = ckey.substring(tsize);
+                    String restedge = ckey.substring(tsize-1);
                     InnerNode newnode = new InnerNode();
                     newnode.children.put(restedge, oldnode);
-                    newnode.addSuffix(index, rest);
+                    newnode.children.put(rest, new Leaf(index));
                     children.put(subtext, newnode);
                     break;
                 }
