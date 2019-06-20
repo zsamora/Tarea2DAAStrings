@@ -1,6 +1,7 @@
+package main;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 public class InnerNode implements Node {
     // Diccionario de aristas que referencian a un Nodo (interno o hoja)
