@@ -49,9 +49,7 @@ public class InnerNode implements Node {
                 else {
                     String newsubtext = subtext.substring(0, tsize-1); // Se quita el ultimo caracter
                     String newrest = subtext.substring(tsize-1) + rest; // Nuevo caracter quitado mas el resto
-                    if (!newsubtext.equals("")) {
-                        addSuffixRec(index, newsubtext, newrest);
-                    }
+                    addSuffixRec(index, newsubtext, newrest);
                 }
             }
         }
