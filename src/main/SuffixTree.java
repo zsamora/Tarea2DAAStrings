@@ -8,11 +8,13 @@ public class SuffixTree {
         root = new InnerNode();
     }
 
-    public void indexWord(String word, Integer position) {
-        // Iterar sobre cada sufijo desde el mas grande al mas pequeño
-        for (int i = 0; i <= word.length(); i++) {
-            String subtext = word.substring(i);
-            root.addSuffix(i+position, subtext);
+    public void indexWord(String word) {
+        int l = word.length();
+
+        for (int i = l-1; i >=0; i--) {
+            System.out.println(i);
+            String subtext = word.substring(i, l);
+            root.addSuffix(i, subtext);
         }
     }
     public void printTree() {

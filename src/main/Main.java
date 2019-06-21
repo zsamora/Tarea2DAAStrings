@@ -16,17 +16,24 @@ import java.io.IOException;
 
 public class Main {
 
-    static final int MIN_EXP = 10;
-    static final int MAX_EXP = 23;
+    static final int MIN_EXP = 14;
+    static final int MAX_EXP = 14;
 
     public static void main(String [] args) {
-        
-        //       Warm Up
+
+//        SuffixTree t = new SuffixTree();
+//        t.indexWord("carvallo caralo cararaca$");
+//        t.printTree();
+
+
+
+
+//               Warm Up
         new EnglishTextTest(5, 5);
         new EnglishTextTest(MIN_EXP, MAX_EXP);
 
 
-        //        Warm Up
+//                Warm Up
         new DNATest(5, 5);
         new DNATest(MIN_EXP, MAX_EXP);
 

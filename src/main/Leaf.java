@@ -11,8 +11,11 @@ public class Leaf implements Node{
 
     @Override
     public void addSuffix(Integer index, String subtext) {}
+
     @Override
-    public void addSuffixRec(Integer index, String subtext, String rest) {}
+    public void addSuffixRec(Integer index, String subtext) {
+    }
+
     @Override
     public void printEdges(boolean breakline) {
         System.out.print(String.valueOf(index));
@@ -34,5 +37,10 @@ public class Leaf implements Node{
 
     @Override
     public int getSize(){return Integer.SIZE*index.size(); }
+
+    @Override
+    public Boolean isInner() {
+        return false;
+    }
 }
 

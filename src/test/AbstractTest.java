@@ -69,7 +69,7 @@ public abstract class AbstractTest {
         SuffixTree suffixTree = new SuffixTree();
 
         long startTime = System.nanoTime();
-        suffixTree.indexWord(text, 0);
+        suffixTree.indexWord(text);
         long endTime = System.nanoTime();
 
         long duration = (endTime - startTime);

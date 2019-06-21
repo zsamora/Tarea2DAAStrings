@@ -10,61 +10,104 @@ public class InnerNode implements Node {
     @Override
     public void addSuffix(Integer index, String subtext) {
         if (!subtext.equals(""))
-            addSuffixRec(index, subtext, "");
+            addSuffixRec(index, subtext);
     }
+
     @Override
-    public void addSuffixRec(Integer index, String subtext, String rest) {
-        while (!subtext.equals("")) {
-            int tsize = subtext.length(); // Largo del subtexto
-            // Si el sufijo exacto existe en el diccionario
-            if (children.containsKey(subtext)) {
-                Node childmatch = children.get(subtext);
-                // Si el resto es vacio
-                if (rest.equals("")) {
-                    childmatch.addValue(index); // Agrega el nuevo indice
-                    break;
-                }
-                else {
-                    childmatch.addSuffix(index, rest);
-                    break;
-                }
-                //System.out.println(children.get(subtext).getValues());
-            }
-            // Si no existe
-            else {
-                boolean found = false;
-                // Si alguna arista contiene el sufijo en su texto
-                for (String ckey : children.keySet()) {
-                    if (ckey.startsWith(subtext)) {
-                        found = true;
-                        Node oldnode = children.get(ckey);
+    public void addSuffixRec(Integer index, String subtext) {
+
+        if (children.size() == 0) {
+            children.putIfAbsent(subtext, new Leaf(index));
+            return;
+        }
+
+        int stLength = subtext.length();
+        String[] prefixes = new String[subtext.length()];
+
+        for (int i = 0; i < stLength ; i++) {
+            prefixes[i] = subtext.substring(0,stLength-i);
+        }
+
+        for (String ckey : children.keySet()) {
+            for (String st : prefixes){
+                if (ckey.startsWith(st)){
+                    if (st.length() == ckey.length()){
+                        children.get(ckey).addSuffix(index, subtext.substring(st.length()));
+                    } else {
+                        Node temp = children.get(ckey);
+                        InnerNode nwNode = new InnerNode();
+                        nwNode.addSuffixRec(index, subtext.substring(st.length()));
+                        nwNode.children.putIfAbsent(ckey.substring(st.length()), temp);
+                        children.putIfAbsent(st, nwNode);
                         children.remove(ckey);
-                        String restedge = ckey.substring(tsize);
-                        InnerNode newnode = new InnerNode();
-                        newnode.children.put(restedge, oldnode);
-                        newnode.children.put(rest, new Leaf(index));
-                        children.put(subtext, newnode);
-                        break;
+                        return;
                     }
                 }
-                // Si se encontro un hijo que contenia el subtexto y se agrego
-                if (found)
-                    break;
-                else {
-                    // Solamente un caracter
-                    if (tsize == 1) {
-                        children.put(subtext+rest, new Leaf(index));
-                        break;
-                    }
-                    else {
-                        rest = subtext.substring(tsize-1) + rest; // Nuevo caracter quitado mas el resto
-                        subtext = subtext.substring(0, tsize-1); // Se quita el ultimo caracter
-                        //addSuffixRec(index, newsubtext, newrest);
-                    }
-                }
+
             }
         }
+
+
+        children.putIfAbsent(subtext, new Leaf(index));
+
     }
+
+
+//    public void addSuffixRec(Integer index, String subtext, String rest) {
+//        while (!subtext.equals("")) {
+//            int tsize = subtext.length(); // Largo del subtexto
+//            // Si el sufijo exacto existe en el diccionario
+//            if (children.containsKey(subtext)) {
+//                Node childmatch = children.get(subtext);
+//                // Si el resto es vacio
+//                if (rest.equals("")) {
+//                    childmatch.addValue(index); // Agrega el nuevo indice
+//                    break;
+//                }
+//                else {
+//                    childmatch.addSuffix(index, rest);
+//                    break;
+//                }
+//                //System.out.println(children.get(subtext).getValues());
+//            }
+//            // Si no existe
+//            else {
+//                boolean found = false;
+//                // Si alguna arista contiene el sufijo en su texto
+//                for (String ckey : children.keySet()) {
+//                    if (ckey.startsWith(subtext)) {
+//                        found = true;
+//                        Node oldnode = children.get(ckey);
+//                        children.remove(ckey);
+//                        String restedge = ckey.substring(tsize);
+//                        InnerNode newnode = new InnerNode();
+//                        newnode.children.put(restedge, oldnode);
+//                        newnode.children.put(rest, new Leaf(index));
+//                        children.put(subtext, newnode);
+//                        break;
+//                    }
+//                }
+//                // Si se encontro un hijo que contenia el subtexto y se agrego
+//                if (found)
+//                    break;
+//                else {
+//                    // Solamente un caracter
+//                    if (tsize == 1) {
+//                        children.put(subtext+rest, new Leaf(index));
+//                        break;
+//                    }
+//                    else {
+//                        rest = subtext.substring(tsize-1) + rest; // Nuevo caracter quitado mas el resto
+//                        subtext = subtext.substring(0, tsize-1); // Se quita el ultimo caracter
+//                        //addSuffixRec(index, newsubtext, newrest);
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+
+
     /*@Override
     public int countRec(String pattern) {
         for (int i = 1; i <= pattern.length(); i++ ) {
@@ -158,5 +201,10 @@ public class InnerNode implements Node {
         }
 
         return size;
+    }
+
+    @Override
+    public Boolean isInner() {
+        return true;
     }
 }
