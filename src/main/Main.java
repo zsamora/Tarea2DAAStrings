@@ -22,7 +22,7 @@ public class Main {
     public static void main(String [] args) {
 
         SuffixTree t = new SuffixTree();
-        t.indexWord("xabxac", 0);
+        t.indexWord("xabxac$", 0);
         t.printTree();
 
 

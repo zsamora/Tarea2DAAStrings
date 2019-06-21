@@ -8,7 +8,7 @@ public class SuffixTree {
         root = new InnerNode();
     }
 
-    public void indexWord(String word, long position) {
+    public void indexWord(String word, Integer position) {
         // Iterar sobre cada sufijo desde el mas grande al mas pequeño
         for (int i = 0; i <= word.length()-1; i++) {
             String subtext = word.substring(i,word.length());
@@ -21,15 +21,18 @@ public class SuffixTree {
     }
 
     public int count(String pattern) {
-        //return root.countRec(pattern);
         return root.locate(pattern).size();
     }
 
-    public ArrayList<Long> locate(String pattern) {
+    public ArrayList<Integer> locate(String pattern) {
         return root.locate(pattern);
     }
 
     public ArrayList<String> topkq(int k, int q) {
         return null;
+    }
+
+    public int getSize(){
+        return  root.getSize();
     }
 }

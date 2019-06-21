@@ -8,12 +8,12 @@ public class InnerNode implements Node {
     HashMap<String, Node> children = new HashMap<>();
 
     @Override
-    public void addSuffix(long index, String subtext) {
+    public void addSuffix(Integer index, String subtext) {
         if (!subtext.equals(""))
             addSuffixRec(index, subtext, "");
     }
     @Override
-    public void addSuffixRec(long index, String subtext, String rest) {
+    public void addSuffixRec(Integer index, String subtext, String rest) {
         while (!subtext.equals("")) {
             int tsize = subtext.length(); // Largo del subtexto
             // Si el sufijo exacto existe en el diccionario
@@ -89,7 +89,7 @@ public class InnerNode implements Node {
         return 0;
     }*/
     @Override
-    public ArrayList<Long> locate(String pattern) {
+    public ArrayList<Integer> locate(String pattern) {
         for (int i = 1; i <= pattern.length(); i++ ) {
             String subpattern = pattern.substring(0,i);
             String restpattern = "";
@@ -112,8 +112,8 @@ public class InnerNode implements Node {
         return null;
     }
     @Override
-    public ArrayList<Long> getValues() {
-        ArrayList<Long> result = new ArrayList<>();
+    public ArrayList<Integer> getValues() {
+        ArrayList<Integer> result = new ArrayList<>();
         for (String ckey : children.keySet()) {
             Node n = children.get(ckey);
             result.addAll(n.getValues());
@@ -130,7 +130,8 @@ public class InnerNode implements Node {
         return result;
     }
     @Override
-    public void addValue(long newindex) {}
+    public void addValue(Integer newindex) {}
+
     @Override
     public void printEdges(boolean breakline){
         for (String s : children.keySet()) {
@@ -146,5 +147,16 @@ public class InnerNode implements Node {
                 System.out.print("} ");
             }
         }
+    }
+
+    @Override
+    public int getSize(){
+        int size = 0;
+        for (String s : children.keySet()) {
+            size += s.length();
+            size += children.get(s).getSize();
+        }
+
+        return size;
     }
 }
