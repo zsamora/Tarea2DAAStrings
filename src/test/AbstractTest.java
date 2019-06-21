@@ -72,6 +72,7 @@ public abstract class AbstractTest {
 
         long duration = (endTime - startTime);
         System.out.println("Creation time: " + duration + "ns");
+        System.out.println("Size: " + suffixTree.getSize() + "bytes");
 
 
         startTime = System.nanoTime();
