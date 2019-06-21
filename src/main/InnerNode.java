@@ -34,7 +34,7 @@ public class InnerNode implements Node {
                     found = true;
                     Node oldnode = children.get(ckey);
                     children.remove(ckey);
-                    String restedge = ckey.substring(tsize-1);
+                    String restedge = ckey.substring(tsize);
                     InnerNode newnode = new InnerNode();
                     newnode.children.put(restedge, oldnode);
                     newnode.children.put(rest, new Leaf(index));
