@@ -10,8 +10,8 @@ public class SuffixTree {
 
     public void indexWord(String word, long position) {
         // Iterar sobre cada sufijo desde el mas grande al mas pequeño
-        for (int i = 0; i <= word.length()-1; i++) {
-            String subtext = word.substring(i,word.length());
+        for (int i = 0; i <= word.length(); i++) {
+            String subtext = word.substring(i);
             root.addSuffix(i+position, subtext);
         }
     }

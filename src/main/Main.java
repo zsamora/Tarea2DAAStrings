@@ -16,12 +16,13 @@ import java.io.IOException;
 
 public class Main {
 
-    static final int MIN_EXP = 10;
+    static final int MIN_EXP = 11;
     static final int MAX_EXP = 15;
 
     public static void main(String [] args) {
-
-
+        SuffixTree t = new SuffixTree();
+        t.indexWord("xabxac$", 0);
+        t.printTree();
         new EnglishTextTest(MIN_EXP, MAX_EXP);
 
 //        new DNATest(MIN_EXP, MAX_EXP);
