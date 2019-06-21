@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class Main {
 
-    static final int MIN_EXP = 9;
+    static final int MIN_EXP = 10;
     static final int MAX_EXP = 15;
 
     public static void main(String [] args) {
