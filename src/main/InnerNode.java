@@ -109,7 +109,7 @@ public class InnerNode implements Node {
                 }
             }
         }
-        return null;
+        return new ArrayList();
     }
     @Override
     public ArrayList<Long> getValues() {
