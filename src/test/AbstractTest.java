@@ -31,7 +31,9 @@ public abstract class AbstractTest {
                         if (textBuilder.length() + subLine.length() > currentLimit){
                             int a = currentLimit-textBuilder.length();
                             textBuilder.append(subLine.substring(0, a>0 ? a-1 : a));
+                            System.out.println("Testing 2ˆ" + currentExp);
                             startTest(new StringBuilder(textBuilder.toString()).append("$").toString(), randomWords);
+                            System.out.println();
                             subLine = subLine.substring(a>0 ? a-1 : subLine.length()-1);
                             if (currentExp == max_exp) {
                                 return;
@@ -63,7 +65,7 @@ public abstract class AbstractTest {
     public abstract String getRandomSubstring(String line);
 
     private void startTest(String text, List<String> randomWords){
-        System.out.println(text);
+//        System.out.println(text);
         SuffixTree suffixTree = new SuffixTree();
 
         long startTime = System.nanoTime();
@@ -72,7 +74,7 @@ public abstract class AbstractTest {
 
         long duration = (endTime - startTime);
         System.out.println("Creation time: " + duration + "ns");
-        System.out.println("Size: " + suffixTree.getSize() + "bytes");
+        System.out.println("Size: " + suffixTree.getSize() + " bytes");
 
 
         startTime = System.nanoTime();
@@ -104,7 +106,7 @@ public abstract class AbstractTest {
         endTime = System.nanoTime();
 
         duration = (endTime - startTime);
-        System.out.println(" Time: " + duration + "ns");
+        System.out.println("Top Q-K Time: " + duration + "ns");
 
     }
 
